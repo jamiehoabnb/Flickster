@@ -17,8 +17,8 @@
         android:textColor="@color/colorTextTitle"
         android:layout_toRightOf="@+id/ivMovieImageLand"
         android:layout_alignTop="@+id/ivMovieImageLand"
-        android:layout_marginBottom="3dp"
-        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="@dimen/margin_title"
+        android:layout_marginLeft="@dimen/margin_default"
         android:typeface="serif"
         android:textStyle="bold"/>
 
@@ -30,6 +30,6 @@
         android:layout_toRightOf="@+id/ivMovieImageLand"
         android:textColor="@color/colorTextOverview"
         android:textSize="@dimen/text_size_overview"
-        android:layout_marginLeft="10dp" />
+        android:layout_marginLeft="@dimen/margin_default" />
 
 </RelativeLayout>

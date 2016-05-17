@@ -22,9 +22,9 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginLeft="18dp"
-            android:layout_marginStart="18dp"
-            android:dividerHeight="10dp"/>
+            android:layout_marginLeft="@dimen/margin_layout"
+            android:layout_marginStart="@dimen/margin_layout"
+            android:dividerHeight="@dimen/margin_default"/>
 
     </android.support.v4.widget.SwipeRefreshLayout>
 </RelativeLayout>

@@ -19,8 +19,8 @@
         android:layout_alignTop="@+id/ivMovieImage"
         android:typeface="serif"
         android:textStyle="bold"
-        android:layout_marginBottom="3dp"
-        android:layout_marginLeft="10dp"/>
+        android:layout_marginBottom="@dimen/margin_title"
+        android:layout_marginLeft="@dimen/margin_default"/>
 
     <TextView
         android:id="@+id/tvMovieOverview"
@@ -29,7 +29,7 @@
         android:layout_below="@+id/tvMovieTitle"
         android:layout_toRightOf="@+id/ivMovieImage"
         android:textColor="@color/colorTextOverview"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="@dimen/margin_default"
         android:textSize="@dimen/text_size_overview" />
 
 </RelativeLayout>
