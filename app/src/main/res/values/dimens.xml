@@ -8,4 +8,5 @@
     <dimen name="margin_layout">18dp</dimen>
     <dimen name="margin_edges_landspace_less_popular">60dp</dimen>
     <dimen name="margin_middle_landspace_less_popular">20dp</dimen>
+    <dimen name="margin_movie_detail">5dp</dimen>
 </resources>

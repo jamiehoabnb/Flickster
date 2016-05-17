@@ -2,14 +2,17 @@ package com.codepath.flickster.adapters;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.codepath.flickster.R;
+import com.codepath.flickster.activities.MovieDetailActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -18,6 +21,7 @@ public class MovieAdapter extends ArrayAdapter<Movie> {
     private String imageBaseURL;
     private static final String POSTER_IMAGE_SIZE = "w185";
     private static final String BACK_DROP_IMAGE_SIZE = "w500";
+    private Context context;
 
     private static class ViewHolder {
         TextView tvTitle;
@@ -28,6 +32,7 @@ public class MovieAdapter extends ArrayAdapter<Movie> {
 
     public MovieAdapter(Context context, List<Movie> movies, String imageBaseURL) {
         super(context, 0, movies);
+        this.context = context;
         this.imageBaseURL = imageBaseURL;
     }
 
@@ -70,6 +75,24 @@ public class MovieAdapter extends ArrayAdapter<Movie> {
             viewHolder.tvTitle.setText(movie.getTitle());
             viewHolder.tvOverview.setText(movie.getOverview());
         }
+
+        viewHolder.ivBasicImage.setTag(position);
+        viewHolder.ivBasicImage.setOnClickListener(
+                new AdapterView.OnClickListener() {
+                    @Override
+                    public void onClick(View item) {
+                        int position = (Integer) item.getTag();
+                        Movie movie = getItem(position);
+
+                        Intent intent = new Intent(getContext(), MovieDetailActivity.class);
+                        intent.putExtra("movie", movie);
+                        intent.putExtra("imageBaseURL", imageBaseURL);
+                        intent.putExtra("POSTER_IMAGE_SIZE", POSTER_IMAGE_SIZE);
+                        intent.putExtra("BACK_DROP_IMAGE_SIZE", BACK_DROP_IMAGE_SIZE);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        context.startActivity(intent);
+                    }
+                });
 
         String imageUri = movie.getType() == Movie.Type.POPULAR ?
                 getBackDropImageUri(movie) : getPosterImageUri(movie);

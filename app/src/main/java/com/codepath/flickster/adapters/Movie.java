@@ -3,7 +3,9 @@ package com.codepath.flickster.adapters;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class Movie {
+import java.io.Serializable;
+
+public class Movie implements Serializable {
 
     private long id;
     private String title;
@@ -11,6 +13,7 @@ public class Movie {
     private String posterImagePath;
     private String backdropImagePath;
     private double voteAverage;
+    private String releaseDate;
 
     public enum Type {
         LESS_POPULAR(0), POPULAR(1);
@@ -30,6 +33,7 @@ public class Movie {
         posterImagePath = movieJSON.getString("poster_path");
         backdropImagePath = movieJSON.getString("backdrop_path");
         voteAverage = movieJSON.getDouble("vote_average");
+        releaseDate = movieJSON.getString("release_date");
     }
 
     public long getId() {
@@ -55,4 +59,6 @@ public class Movie {
     public double getVoteAverage() { return voteAverage; }
 
     public Type getType() { return voteAverage > 5 ? Type.POPULAR : Type.LESS_POPULAR; }
+
+    public String getReleaseDate() { return releaseDate; }
 }
