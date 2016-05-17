@@ -14,13 +14,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:textColor="@color/colorTextTitle"
         android:layout_toRightOf="@+id/ivMovieImage"
         android:layout_alignTop="@+id/ivMovieImage"
-        android:typeface="serif"
-        android:textStyle="bold"
         android:layout_marginBottom="@dimen/margin_title"
-        android:layout_marginLeft="@dimen/margin_default"/>
+        android:layout_marginLeft="@dimen/margin_default"
+        style="@style/TitleFont"/>
 
     <TextView
         android:id="@+id/tvMovieOverview"
@@ -28,8 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvMovieTitle"
         android:layout_toRightOf="@+id/ivMovieImage"
-        android:textColor="@color/colorTextOverview"
         android:layout_marginLeft="@dimen/margin_default"
-        android:textSize="@dimen/text_size_overview" />
+        style="@style/OverviewFont" />
 
 </RelativeLayout>
