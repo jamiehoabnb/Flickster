@@ -29,6 +29,8 @@ public class MovieActivity extends AppCompatActivity {
 
     private SwipeRefreshLayout swipeContainer;
 
+    private MovieAdapter adapter;
+
     private ResponseHandlerInterface configResponseHandler = new JsonHttpResponseHandler() {
         @Override
         public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
@@ -40,6 +42,12 @@ public class MovieActivity extends AppCompatActivity {
             }
 
             new NowPlayingRequest().execRequest(nowPlayingResponseHandler);
+        }
+
+        @Override
+        public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+            super.onFailure(statusCode, headers, throwable, errorResponse);
+            Log.e(MovieActivity.class.getName(), "Error getting configuration", throwable);
         }
     };
 
@@ -56,12 +64,25 @@ public class MovieActivity extends AppCompatActivity {
                     movies.add(new Movie(results.getJSONObject(i)));
                 }
 
-                MovieAdapter adapter = new MovieAdapter(getBaseContext(), movies, imageBaseURL);
-                ListView listView = (ListView) findViewById(R.id.lvMovies);
-                listView.setAdapter(adapter);
+                if (adapter == null) {
+                    adapter = new MovieAdapter(getBaseContext(), movies, imageBaseURL);
+                    ListView listView = (ListView) findViewById(R.id.lvMovies);
+                    listView.setAdapter(adapter);
+                } else {
+                    adapter.refresh(movies);
+                    swipeContainer.setRefreshing(false);
+                }
             } catch (JSONException e) {
                 Log.e(MovieActivity.class.getName(), "Error getting now playing list.", e);
+                swipeContainer.setRefreshing(false);
             }
+        }
+
+        @Override
+        public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+            super.onFailure(statusCode, headers, throwable, errorResponse);
+            Log.e(MovieActivity.class.getName(), "Error getting now playing list.", throwable);
+            swipeContainer.setRefreshing(false);
         }
     };
 
@@ -77,7 +98,8 @@ public class MovieActivity extends AppCompatActivity {
                 new NowPlayingRequest().execRequest(nowPlayingResponseHandler);
             }
         });
-        swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
+        swipeContainer.setColorSchemeResources(
+                android.R.color.holo_blue_bright,
                 android.R.color.holo_green_light,
                 android.R.color.holo_orange_light,
                 android.R.color.holo_red_light);
