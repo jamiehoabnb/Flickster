@@ -96,7 +96,8 @@ public class MovieAdapter extends ArrayAdapter<Movie> {
 
         String imageUri = movie.getType() == Movie.Type.POPULAR ?
                 getBackDropImageUri(movie) : getPosterImageUri(movie);
-        Picasso.with(getContext()).load(imageUri).into(viewHolder.ivBasicImage);
+        Picasso.with(getContext()).load(imageUri)
+                .placeholder(R.drawable.ic_movie_placeholder).into(viewHolder.ivBasicImage);
 
         return convertView;
     }

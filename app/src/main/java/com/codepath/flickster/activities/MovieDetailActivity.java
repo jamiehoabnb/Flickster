@@ -1,8 +1,5 @@
 package com.codepath.flickster.activities;
 
-import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
@@ -40,6 +37,7 @@ public class MovieDetailActivity extends AppCompatActivity {
                 (movie.getBackdropImagePath() != null && ! "null".equals(movie.getBackdropImagePath()) ?
                         BACK_DROP_IMAGE_SIZE + "/" + movie.getBackdropImagePath() :
                         POSTER_IMAGE_SIZE + "/" +movie.getPosterImagePath());
-        Picasso.with(this).load(imageUri).into(imageView);
+        Picasso.with(this).load(imageUri).fit().centerCrop()
+                .placeholder(R.drawable.ic_movie_placeholder).into(imageView);
     }
 }
