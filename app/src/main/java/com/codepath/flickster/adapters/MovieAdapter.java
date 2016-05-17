@@ -62,7 +62,9 @@ public class MovieAdapter extends ArrayAdapter<Movie> {
             String imageUri = imageBaseURL + POSTER_IMAGE_SIZE + "/" + movie.getPosterImagePath();
             Picasso.with(getContext()).load(imageUri).into(viewHolder.ivBasicImage);
         } else {
-            String imageUri = imageBaseURL + BACK_DROP_IMAGE_SIZE + "/" + movie.getBackdropImagePath();
+            String imageUri = imageBaseURL + BACK_DROP_IMAGE_SIZE + "/" +
+                    (movie.getBackdropImagePath() != null && ! "null".equals(movie.getBackdropImagePath()) ?
+                        movie.getBackdropImagePath() : movie.getPosterImagePath());
             Picasso.with(getContext()).load(imageUri).into(viewHolder.ivBasicImageLand);
         }
 
