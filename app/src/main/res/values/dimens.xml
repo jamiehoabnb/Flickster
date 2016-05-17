@@ -6,4 +6,6 @@
     <dimen name="margin_default">10dp</dimen>
     <dimen name="margin_title">3dp</dimen>
     <dimen name="margin_layout">18dp</dimen>
+    <dimen name="margin_edges_landspace_less_popular">60dp</dimen>
+    <dimen name="margin_middle_landspace_less_popular">20dp</dimen>
 </resources>

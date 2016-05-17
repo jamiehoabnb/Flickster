@@ -23,13 +23,23 @@ public class MovieAdapter extends ArrayAdapter<Movie> {
         TextView tvTitle;
         TextView tvOverview;
         ImageView ivBasicImage;
-        ImageView ivBasicImageLand;
     }
 
 
     public MovieAdapter(Context context, List<Movie> movies, String imageBaseURL) {
         super(context, 0, movies);
         this.imageBaseURL = imageBaseURL;
+    }
+
+    @Override
+    public int getViewTypeCount() {
+        return Movie.Type.values().length;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        Movie movie = getItem(position);
+        return movie.getType().getVal();
     }
 
     public void refresh(List<Movie> movies) {
@@ -45,29 +55,47 @@ public class MovieAdapter extends ArrayAdapter<Movie> {
         ViewHolder viewHolder;
         if (convertView == null) {
             viewHolder = new ViewHolder();
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_movie, parent, false);
+            int type = getItemViewType(position);
+
+            convertView = getInflatedLayoutForType(type, parent);
             viewHolder.tvTitle = (TextView) convertView.findViewById(R.id.tvMovieTitle);
             viewHolder.tvOverview = (TextView) convertView.findViewById(R.id.tvMovieOverview);
             viewHolder.ivBasicImage = (ImageView) convertView.findViewById(R.id.ivMovieImage);
-            viewHolder.ivBasicImageLand = (ImageView) convertView.findViewById(R.id.ivMovieImageLand);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        viewHolder.tvTitle.setText(movie.getTitle());
-        viewHolder.tvOverview.setText(movie.getOverview());
-
-        if (viewHolder.ivBasicImage != null) {
-            String imageUri = imageBaseURL + POSTER_IMAGE_SIZE + "/" + movie.getPosterImagePath();
-            Picasso.with(getContext()).load(imageUri).into(viewHolder.ivBasicImage);
-        } else {
-            String imageUri = imageBaseURL + BACK_DROP_IMAGE_SIZE + "/" +
-                    (movie.getBackdropImagePath() != null && ! "null".equals(movie.getBackdropImagePath()) ?
-                        movie.getBackdropImagePath() : movie.getPosterImagePath());
-            Picasso.with(getContext()).load(imageUri).into(viewHolder.ivBasicImageLand);
+        if (viewHolder.tvTitle != null) {
+            viewHolder.tvTitle.setText(movie.getTitle());
+            viewHolder.tvOverview.setText(movie.getOverview());
         }
 
+        String imageUri = movie.getType() == Movie.Type.POPULAR ?
+                getBackDropImageUri(movie) : getPosterImageUri(movie);
+        Picasso.with(getContext()).load(imageUri).into(viewHolder.ivBasicImage);
+
         return convertView;
+    }
+
+    private String getPosterImageUri(Movie movie) {
+        return imageBaseURL + POSTER_IMAGE_SIZE + "/" + movie.getPosterImagePath();
+    }
+
+    private String getBackDropImageUri(Movie movie) {
+        return imageBaseURL +
+                (movie.getBackdropImagePath() != null && ! "null".equals(movie.getBackdropImagePath()) ?
+                        BACK_DROP_IMAGE_SIZE + "/" + movie.getBackdropImagePath() :
+                        POSTER_IMAGE_SIZE + "/" +movie.getPosterImagePath());
+    }
+
+    private View getInflatedLayoutForType(int type, ViewGroup parent) {
+        if (type == Movie.Type.LESS_POPULAR.getVal()) {
+            return LayoutInflater.from(getContext()).inflate(R.layout.item_movie, parent, false);
+        } else if (type == Movie.Type.POPULAR.getVal()) {
+            return LayoutInflater.from(getContext()).inflate(R.layout.item_movie_popular, parent, false);
+        } else {
+            return null;
+        }
     }
 }

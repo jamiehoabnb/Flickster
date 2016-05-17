@@ -10,6 +10,18 @@ public class Movie {
     private String overview;
     private String posterImagePath;
     private String backdropImagePath;
+    private double voteAverage;
+
+    public enum Type {
+        LESS_POPULAR(0), POPULAR(1);
+
+        int val;
+        Type(int val) {
+            this.val = val;
+        }
+
+        public int getVal() { return val; }
+    }
 
     public Movie(JSONObject movieJSON) throws JSONException {
         id = movieJSON.getLong("id");
@@ -17,6 +29,7 @@ public class Movie {
         overview = movieJSON.getString("overview");
         posterImagePath = movieJSON.getString("poster_path");
         backdropImagePath = movieJSON.getString("backdrop_path");
+        voteAverage = movieJSON.getDouble("vote_average");
     }
 
     public long getId() {
@@ -38,4 +51,8 @@ public class Movie {
     public String getBackdropImagePath() {
         return backdropImagePath;
     }
+
+    public double getVoteAverage() { return voteAverage; }
+
+    public Type getType() { return voteAverage > 5 ? Type.POPULAR : Type.LESS_POPULAR; }
 }
