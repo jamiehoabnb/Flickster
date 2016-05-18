@@ -85,16 +85,16 @@ public class MovieAdapter extends ArrayAdapter<Movie> {
                         int position = (Integer) item.getTag();
                         Movie movie = getItem(position);
 
-                        if (movie.getType() == Movie.Type.LESS_POPULAR) {
+                        if (movie.getType() == Movie.Type.POPULAR) {
+                            Intent intent = new Intent(getContext(), YoutubeActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            context.startActivity(intent);
+                        } else {
                             Intent intent = new Intent(getContext(), MovieDetailActivity.class);
                             intent.putExtra("movie", movie);
                             intent.putExtra("imageBaseURL", imageBaseURL);
                             intent.putExtra("POSTER_IMAGE_SIZE", POSTER_IMAGE_SIZE);
                             intent.putExtra("BACK_DROP_IMAGE_SIZE", BACK_DROP_IMAGE_SIZE);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                            context.startActivity(intent);
-                        } else {
-                            Intent intent = new Intent(getContext(), YoutubeActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             context.startActivity(intent);
                         }
@@ -114,19 +114,14 @@ public class MovieAdapter extends ArrayAdapter<Movie> {
     }
 
     private String getBackDropImageUri(Movie movie) {
-        return imageBaseURL +
-                (movie.getBackdropImagePath() != null && ! "null".equals(movie.getBackdropImagePath()) ?
-                        BACK_DROP_IMAGE_SIZE + "/" + movie.getBackdropImagePath() :
-                        POSTER_IMAGE_SIZE + "/" +movie.getPosterImagePath());
+        return imageBaseURL + BACK_DROP_IMAGE_SIZE + "/" + movie.getBackdropImagePath();
     }
 
     private View getInflatedLayoutForType(int type, ViewGroup parent) {
-        if (type == Movie.Type.LESS_POPULAR.getVal()) {
-            return LayoutInflater.from(getContext()).inflate(R.layout.item_movie, parent, false);
-        } else if (type == Movie.Type.POPULAR.getVal()) {
+        if (type == Movie.Type.POPULAR.getVal()) {
             return LayoutInflater.from(getContext()).inflate(R.layout.item_movie_popular, parent, false);
         } else {
-            return null;
+            return LayoutInflater.from(getContext()).inflate(R.layout.item_movie, parent, false);
         }
     }
 }

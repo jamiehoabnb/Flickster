@@ -58,7 +58,12 @@ public class Movie implements Serializable {
 
     public double getVoteAverage() { return voteAverage; }
 
-    public Type getType() { return voteAverage > 5 ? Type.POPULAR : Type.LESS_POPULAR; }
+    public Type getType() {
+        return voteAverage > 5
+                && getBackdropImagePath() != null
+                && ! "null".equals(getBackdropImagePath())
+                ? Type.POPULAR : Type.LESS_POPULAR;
+    }
 
     public String getReleaseDate() { return releaseDate; }
 }
