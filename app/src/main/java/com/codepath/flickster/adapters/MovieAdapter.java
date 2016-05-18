@@ -13,14 +13,15 @@ import android.widget.TextView;
 
 import com.codepath.flickster.R;
 import com.codepath.flickster.activities.MovieDetailActivity;
+import com.codepath.flickster.activities.YoutubeActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 public class MovieAdapter extends ArrayAdapter<Movie> {
     private String imageBaseURL;
-    private static final String POSTER_IMAGE_SIZE = "w185";
-    private static final String BACK_DROP_IMAGE_SIZE = "w500";
+    private static final String POSTER_IMAGE_SIZE = "w500";
+    private static final String BACK_DROP_IMAGE_SIZE = "w1280";
     private Context context;
 
     private static class ViewHolder {
@@ -84,13 +85,19 @@ public class MovieAdapter extends ArrayAdapter<Movie> {
                         int position = (Integer) item.getTag();
                         Movie movie = getItem(position);
 
-                        Intent intent = new Intent(getContext(), MovieDetailActivity.class);
-                        intent.putExtra("movie", movie);
-                        intent.putExtra("imageBaseURL", imageBaseURL);
-                        intent.putExtra("POSTER_IMAGE_SIZE", POSTER_IMAGE_SIZE);
-                        intent.putExtra("BACK_DROP_IMAGE_SIZE", BACK_DROP_IMAGE_SIZE);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        context.startActivity(intent);
+                        if (movie.getType() == Movie.Type.LESS_POPULAR) {
+                            Intent intent = new Intent(getContext(), MovieDetailActivity.class);
+                            intent.putExtra("movie", movie);
+                            intent.putExtra("imageBaseURL", imageBaseURL);
+                            intent.putExtra("POSTER_IMAGE_SIZE", POSTER_IMAGE_SIZE);
+                            intent.putExtra("BACK_DROP_IMAGE_SIZE", BACK_DROP_IMAGE_SIZE);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            context.startActivity(intent);
+                        } else {
+                            Intent intent = new Intent(getContext(), YoutubeActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            context.startActivity(intent);
+                        }
                     }
                 });
 

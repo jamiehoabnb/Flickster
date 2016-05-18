@@ -3,12 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="10dp"
-    android:paddingLeft="10dp"
-    android:paddingRight="10dp"
-    android:layout_marginLeft="10dp"
-    android:layout_marginRight="10dp"
-    android:layout_marginBottom="10dp"
+    android:paddingBottom="@dimen/margin_default"
+    android:paddingLeft="@dimen/margin_default"
+    android:paddingRight="@dimen/margin_default"
+    android:layout_marginLeft="@dimen/margin_default"
+    android:layout_marginRight="@dimen/margin_default"
+    android:layout_marginBottom="@dimen/margin_default"
     android:background="@color/colorBgDetail"
     tools:context=".activities.MovieDetailActivity">
 
