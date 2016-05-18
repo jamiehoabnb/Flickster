@@ -85,20 +85,13 @@ public class MovieAdapter extends ArrayAdapter<Movie> {
                         int position = (Integer) item.getTag();
                         Movie movie = getItem(position);
 
-                        if (movie.getType() == Movie.Type.POPULAR) {
-                            Intent intent = new Intent(getContext(), YouTubeActivity.class);
-                            intent.putExtra("movie", movie);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                            context.startActivity(intent);
-                        } else {
-                            Intent intent = new Intent(getContext(), MovieDetailActivity.class);
-                            intent.putExtra("movie", movie);
-                            intent.putExtra("imageBaseURL", imageBaseURL);
-                            intent.putExtra("POSTER_IMAGE_SIZE", POSTER_IMAGE_SIZE);
-                            intent.putExtra("BACK_DROP_IMAGE_SIZE", BACK_DROP_IMAGE_SIZE);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                            context.startActivity(intent);
-                        }
+                        Intent intent = movie.getType() == Movie.Type.POPULAR ?
+                                new Intent(getContext(), YouTubeActivity.class) :
+                                new Intent(getContext(), MovieDetailActivity.class);
+
+                        intent.putExtra("movie", movie);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        context.startActivity(intent);
                     }
                 });
 

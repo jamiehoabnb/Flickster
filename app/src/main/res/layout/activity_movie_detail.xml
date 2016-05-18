@@ -12,18 +12,16 @@
     android:background="@color/colorBgDetail"
     tools:context=".activities.MovieDetailActivity">
 
-    <ImageView
-        android:id="@+id/ivMovieDetailImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"/>
+    <com.google.android.youtube.player.YouTubePlayerView
+        android:id="@+id/movieDetailPlayer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
     <TextView
         android:id="@+id/tvMovieDetailTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/ivMovieDetailImage"
+        android:layout_below="@+id/movieDetailPlayer"
         android:layout_alignParentLeft="true"
         android:layout_marginBottom="@dimen/margin_movie_detail"
         style="@style/TitleFont"/>

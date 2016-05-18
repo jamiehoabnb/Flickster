@@ -2,20 +2,34 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/ivMovieImage"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/layoutImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"/>
+        android:layout_alignParentTop="true">
+
+        <ImageView
+            android:id="@+id/ivMovieImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <ImageView
+            android:id="@+id/playIconOverlay"
+            android:src="@drawable/play_overlay"
+            android:layout_width="@dimen/play_overlay_size"
+            android:layout_height="@dimen/play_overlay_size"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"/>
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/tvMovieTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/ivMovieImage"
-        android:layout_alignTop="@+id/ivMovieImage"
+        android:layout_toRightOf="@+id/layoutImage"
+        android:layout_alignTop="@+id/layoutImage"
         android:layout_marginBottom="@dimen/margin_title"
         android:layout_marginLeft="@dimen/margin_default"
         style="@style/TitleFont"/>
@@ -25,7 +39,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvMovieTitle"
-        android:layout_toRightOf="@+id/ivMovieImage"
+        android:layout_toRightOf="@+id/layoutImage"
         android:layout_marginLeft="@dimen/margin_default"
         style="@style/OverviewFont"/>
 

@@ -10,4 +10,5 @@
     <dimen name="margin_edges_landspace_less_popular">60dp</dimen>
     <dimen name="margin_middle_landspace_less_popular">20dp</dimen>
     <dimen name="margin_movie_detail">5dp</dimen>
+    <dimen name="play_overlay_size">100dp</dimen>
 </resources>
