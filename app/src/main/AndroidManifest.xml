@@ -12,21 +12,17 @@
         <activity android:name=".activities.MovieActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".activities.MovieDetailActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-            </intent-filter>
-        </activity>
+        <activity
+            android:name=".activities.MovieDetailActivity"
+            android:screenOrientation="portrait"/>
 
         <activity
             android:name=".activities.YouTubeActivity"
-            android:screenOrientation="landscape">
-        </activity>
+            android:screenOrientation="landscape"/>
     </application>
 
 </manifest>
