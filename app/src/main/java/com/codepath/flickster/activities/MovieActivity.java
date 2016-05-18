@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.View;
 import android.widget.ListView;
 
 import com.codepath.flickster.R;
@@ -116,12 +115,6 @@ public class MovieActivity extends AppCompatActivity {
                 new NowPlayingRequest().execRequest(nowPlayingResponseHandler);
             }
         });
-        swipeContainer.setColorSchemeResources(
-                android.R.color.holo_blue_bright,
-                android.R.color.holo_green_light,
-                android.R.color.holo_orange_light,
-                android.R.color.holo_red_light);
-
 
         new ConfigurationRequest().execRequest(configResponseHandler);
     }
