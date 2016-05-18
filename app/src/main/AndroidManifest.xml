@@ -24,7 +24,7 @@
         </activity>
 
         <activity
-            android:name=".activities.YoutubeActivity"
+            android:name=".activities.YouTubeActivity"
             android:screenOrientation="landscape">
         </activity>
     </application>

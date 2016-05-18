@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBg"
-    tools:context=".activities.YoutubeActivity">
+    tools:context=".activities.YouTubeActivity">
 
     <com.google.android.youtube.player.YouTubePlayerView
         android:id="@+id/player"

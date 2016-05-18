@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.codepath.flickster.R;
 import com.codepath.flickster.activities.MovieDetailActivity;
-import com.codepath.flickster.activities.YoutubeActivity;
+import com.codepath.flickster.activities.YouTubeActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -86,7 +86,8 @@ public class MovieAdapter extends ArrayAdapter<Movie> {
                         Movie movie = getItem(position);
 
                         if (movie.getType() == Movie.Type.POPULAR) {
-                            Intent intent = new Intent(getContext(), YoutubeActivity.class);
+                            Intent intent = new Intent(getContext(), YouTubeActivity.class);
+                            intent.putExtra("movie", movie);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             context.startActivity(intent);
                         } else {

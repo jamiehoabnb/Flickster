@@ -1,7 +1,10 @@
 package com.codepath.flickster.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -11,6 +14,22 @@ import com.codepath.flickster.adapters.Movie;
 import com.squareup.picasso.Picasso;
 
 public class MovieDetailActivity extends AppCompatActivity {
+
+    private class ImageOnClickListener implements AdapterView.OnClickListener {
+        private Movie movie;
+
+        private ImageOnClickListener(Movie movie) {
+            this.movie = movie;
+        }
+
+        @Override
+        public void onClick(View item) {
+            Intent intent = new Intent(getApplicationContext(), YouTubeActivity.class);
+            intent.putExtra("movie", movie);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            getApplicationContext().startActivity(intent);
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +52,9 @@ public class MovieDetailActivity extends AppCompatActivity {
         releaseDate.setText(movie.getReleaseDate());
         ratingBar.setRating((float) movie.getVoteAverage());
 
+        imageView.setOnClickListener(new ImageOnClickListener(movie));
+
+        //Use poster image if movie does not have backdrop image.
         String imageUri = imageBaseURL +
                 (movie.getBackdropImagePath() != null && ! "null".equals(movie.getBackdropImagePath()) ?
                         BACK_DROP_IMAGE_SIZE + "/" + movie.getBackdropImagePath() :
