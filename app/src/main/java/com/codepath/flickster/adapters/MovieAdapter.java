@@ -2,7 +2,6 @@ package com.codepath.flickster.adapters;
 
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,29 +11,41 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.codepath.flickster.R;
-import com.codepath.flickster.activities.MovieDetailActivity;
-import com.codepath.flickster.activities.YouTubeActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
+
+import javax.annotation.Nullable;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class MovieAdapter extends ArrayAdapter<Movie> {
     private String imageBaseURL;
     private static final String POSTER_IMAGE_SIZE = "w500";
     private static final String BACK_DROP_IMAGE_SIZE = "w1280";
-    private Context context;
 
-    private static class ViewHolder {
-        TextView tvTitle;
-        TextView tvOverview;
-        ImageView ivBasicImage;
+    static class ViewHolder {
+        @Nullable @BindView(R.id.tvMovieTitle) TextView tvTitle;
+        @Nullable @BindView(R.id.tvMovieOverview) TextView tvOverview;
+        @BindView(R.id.ivMovieImage) ImageView ivBasicImage;
+
+        public ViewHolder(View view) {
+            ButterKnife.bind(this, view);
+        }
     }
 
+    public interface DetailClickListener {
+        void onClick(Movie movie, Context context);
+    }
 
-    public MovieAdapter(Context context, List<Movie> movies, String imageBaseURL) {
+    private DetailClickListener detailClickListener;
+
+    public MovieAdapter(Context context, List<Movie> movies, String imageBaseURL,
+                        DetailClickListener detailClickListener) {
         super(context, 0, movies);
-        this.context = context;
         this.imageBaseURL = imageBaseURL;
+        this.detailClickListener = detailClickListener;
     }
 
     @Override
@@ -60,13 +71,10 @@ public class MovieAdapter extends ArrayAdapter<Movie> {
 
         ViewHolder viewHolder;
         if (convertView == null) {
-            viewHolder = new ViewHolder();
             int type = getItemViewType(position);
 
             convertView = getInflatedLayoutForType(type, parent);
-            viewHolder.tvTitle = (TextView) convertView.findViewById(R.id.tvMovieTitle);
-            viewHolder.tvOverview = (TextView) convertView.findViewById(R.id.tvMovieOverview);
-            viewHolder.ivBasicImage = (ImageView) convertView.findViewById(R.id.ivMovieImage);
+            viewHolder = new ViewHolder(convertView);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
@@ -84,14 +92,7 @@ public class MovieAdapter extends ArrayAdapter<Movie> {
                     public void onClick(View item) {
                         int position = (Integer) item.getTag();
                         Movie movie = getItem(position);
-
-                        Intent intent = movie.getType() == Movie.Type.POPULAR ?
-                                new Intent(getContext(), YouTubeActivity.class) :
-                                new Intent(getContext(), MovieDetailActivity.class);
-
-                        intent.putExtra("movie", movie);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        context.startActivity(intent);
+                        detailClickListener.onClick(movie, getContext());
                     }
                 });
 

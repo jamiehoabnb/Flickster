@@ -1,9 +1,12 @@
 package com.codepath.flickster.activities;
 
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ListView;
 
 import com.codepath.flickster.R;
@@ -21,13 +24,16 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import cz.msebera.android.httpclient.Header;
 
 public class MovieActivity extends AppCompatActivity {
 
     private static String imageBaseURL;
 
-    private SwipeRefreshLayout swipeContainer;
+    @BindView(R.id.swipeContainer) SwipeRefreshLayout swipeContainer;
+    @BindView(R.id.lvMovies) ListView listView;
 
     private MovieAdapter adapter;
 
@@ -65,8 +71,20 @@ public class MovieActivity extends AppCompatActivity {
                 }
 
                 if (adapter == null) {
-                    adapter = new MovieAdapter(getBaseContext(), movies, imageBaseURL);
-                    ListView listView = (ListView) findViewById(R.id.lvMovies);
+                    adapter = new MovieAdapter(getBaseContext(), movies, imageBaseURL,
+                            new MovieAdapter.DetailClickListener() {
+
+                                @Override
+                                public void onClick(Movie movie, Context context) {
+                                    Intent intent = movie.getType() == Movie.Type.POPULAR ?
+                                            new Intent(context, YouTubeActivity.class) :
+                                            new Intent(context, MovieDetailActivity.class);
+
+                                    intent.putExtra("movie", movie);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    context.startActivity(intent);
+                                }
+                            });
                     listView.setAdapter(adapter);
                 } else {
                     adapter.refresh(movies);
@@ -90,8 +108,8 @@ public class MovieActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie);
+        ButterKnife.bind(this);
 
-        swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
