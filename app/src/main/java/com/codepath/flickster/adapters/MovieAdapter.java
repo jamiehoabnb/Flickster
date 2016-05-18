@@ -19,9 +19,11 @@ import javax.annotation.Nullable;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import jp.wasabeef.picasso.transformations.RoundedCornersTransformation;
 
 public class MovieAdapter extends ArrayAdapter<Movie> {
     private String imageBaseURL;
+    private static final int ROUNDED_CORNER_CONST = 10;
     private static final String POSTER_IMAGE_SIZE = "w500";
     private static final String BACK_DROP_IMAGE_SIZE = "w1280";
 
@@ -98,8 +100,12 @@ public class MovieAdapter extends ArrayAdapter<Movie> {
 
         String imageUri = movie.getType() == Movie.Type.POPULAR ?
                 getBackDropImageUri(movie) : getPosterImageUri(movie);
-        Picasso.with(getContext()).load(imageUri)
-                .placeholder(R.drawable.ic_movie_placeholder).into(viewHolder.ivBasicImage);
+        Picasso.with(getContext())
+                .load(imageUri)
+                .placeholder(R.drawable.ic_movie_placeholder)
+                .transform(
+                        new RoundedCornersTransformation(ROUNDED_CORNER_CONST, ROUNDED_CORNER_CONST))
+                .into(viewHolder.ivBasicImage);
 
         return convertView;
     }
