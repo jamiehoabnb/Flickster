@@ -11,6 +11,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.codepath.flickster.R;
+import com.codepath.flickster.util.DeviceDimensionsHelper;
+import com.codepath.flickster.util.FlicksterConstants;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -23,9 +25,6 @@ import jp.wasabeef.picasso.transformations.RoundedCornersTransformation;
 
 public class MovieAdapter extends ArrayAdapter<Movie> {
     private String imageBaseURL;
-    private static final int ROUNDED_CORNER_CONST = 10;
-    private static final String POSTER_IMAGE_SIZE = "w500";
-    private static final String BACK_DROP_IMAGE_SIZE = "w1280";
 
     static class ViewHolder {
         @Nullable @BindView(R.id.tvMovieTitle) TextView tvTitle;
@@ -100,22 +99,28 @@ public class MovieAdapter extends ArrayAdapter<Movie> {
 
         String imageUri = movie.getType() == Movie.Type.POPULAR ?
                 getBackDropImageUri(movie) : getPosterImageUri(movie);
+        int width = movie.getType() == Movie.Type.POPULAR ?
+                DeviceDimensionsHelper.getDisplayWidth(getContext()) :
+                (int) Math.round(DeviceDimensionsHelper.getDisplayWidth(getContext())*
+                        FlicksterConstants.POSTER_SCREEN_WIDTH_FACTOR);
         Picasso.with(getContext())
                 .load(imageUri)
                 .placeholder(R.drawable.ic_movie_placeholder)
+                .resize(width, 0)
                 .transform(
-                        new RoundedCornersTransformation(ROUNDED_CORNER_CONST, ROUNDED_CORNER_CONST))
+                        new RoundedCornersTransformation(FlicksterConstants.ROUNDED_CORNER_CONST,
+                                FlicksterConstants.ROUNDED_CORNER_CONST))
                 .into(viewHolder.ivBasicImage);
 
         return convertView;
     }
 
     private String getPosterImageUri(Movie movie) {
-        return imageBaseURL + POSTER_IMAGE_SIZE + "/" + movie.getPosterImagePath();
+        return imageBaseURL + FlicksterConstants.POSTER_IMAGE_SIZE + "/" + movie.getPosterImagePath();
     }
 
     private String getBackDropImageUri(Movie movie) {
-        return imageBaseURL + BACK_DROP_IMAGE_SIZE + "/" + movie.getBackdropImagePath();
+        return imageBaseURL + FlicksterConstants.BACK_DROP_IMAGE_SIZE + "/" + movie.getBackdropImagePath();
     }
 
     private View getInflatedLayoutForType(int type, ViewGroup parent) {
