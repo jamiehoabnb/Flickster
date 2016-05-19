@@ -1,11 +1,14 @@
 package com.codepath.flickster.activities;
 
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.codepath.flickster.R;
 import com.codepath.flickster.adapters.Movie;
+import com.codepath.flickster.util.DeviceDimensionsHelper;
+import com.codepath.flickster.util.FlicksterConstants;
 import com.codepath.flickster.util.YouTubeUtil;
 import com.google.android.youtube.player.YouTubeBaseActivity;
 import com.google.android.youtube.player.YouTubePlayerView;
@@ -34,6 +37,7 @@ public class MovieDetailActivity extends YouTubeBaseActivity {
         overview.setText(movie.getOverview());
         releaseDate.setText(movie.getReleaseDate());
         ratingBar.setRating((float) movie.getVoteAverage());
+        overview.setMovementMethod(new ScrollingMovementMethod());
 
         YouTubeUtil.init(movie, youTubePlayerView, true);
     }

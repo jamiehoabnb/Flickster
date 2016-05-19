@@ -1,22 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<android.support.percent.PercentRelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/margin_default"
-    android:paddingLeft="@dimen/margin_default"
-    android:paddingRight="@dimen/margin_default"
-    android:layout_marginLeft="@dimen/margin_default"
-    android:layout_marginRight="@dimen/margin_default"
-    android:layout_marginBottom="@dimen/margin_default"
+    android:padding="@dimen/margin_default"
+    android:layout_margin="@dimen/margin_default"
     android:background="@color/colorBgDetail"
     tools:context=".activities.MovieDetailActivity">
 
     <com.google.android.youtube.player.YouTubePlayerView
         android:id="@+id/movieDetailPlayer"
-        android:layout_width="@dimen/youtube_landscape_size"
-        android:layout_height="match_parent"/>
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_heightPercent="100%"
+        app:layout_widthPercent="70%"/>
 
     <TextView
         android:id="@+id/tvMovieDetailTitle"
@@ -56,8 +55,10 @@
         android:layout_marginLeft="@dimen/margin_default"
         android:layout_below="@+id/tvMovieDetailReleaseDate"
         android:layout_toRightOf="@+id/movieDetailPlayer"
+        android:layout_marginBottom="@dimen/margin_movie_detail"
         android:numStars="5"
-        android:stepSize="1.0" />
+        android:stepSize="1.0"
+        style="?android:attr/ratingBarStyleSmall"/>
 
     <TextView
         android:id="@+id/tvMovieDetailOverview"
@@ -66,6 +67,7 @@
         android:layout_below="@+id/rbMovieDetail"
         android:layout_toRightOf="@+id/movieDetailPlayer"
         android:layout_marginLeft="@dimen/margin_default"
+        android:scrollbars = "vertical"
         style="@style/OverviewFont"/>
 
-</RelativeLayout>
+</android.support.percent.PercentRelativeLayout>
