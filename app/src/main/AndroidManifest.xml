@@ -17,8 +17,7 @@
         </activity>
 
         <activity
-            android:name=".activities.MovieDetailActivity"
-            android:screenOrientation="portrait"/>
+            android:name=".activities.MovieDetailActivity"/>
 
         <activity
             android:name=".activities.YouTubeActivity"

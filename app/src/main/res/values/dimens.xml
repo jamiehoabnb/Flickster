@@ -3,7 +3,7 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="text_size_title">24sp</dimen>
-    <dimen name="text_size_overview">15sp</dimen>
+    <dimen name="text_size_overview">19sp</dimen>
     <dimen name="margin_default">10dp</dimen>
     <dimen name="margin_title">3dp</dimen>
     <dimen name="margin_layout">18dp</dimen>
@@ -11,4 +11,5 @@
     <dimen name="margin_middle_landspace_less_popular">20dp</dimen>
     <dimen name="margin_movie_detail">5dp</dimen>
     <dimen name="play_overlay_size">100dp</dimen>
+    <dimen name="youtube_landscape_size">600dp</dimen>
 </resources>
