@@ -48,6 +48,8 @@ Describe any challenges encountered while building the app.
 ## Open-source libraries used
 
 - [Android Async HTTP](https://github.com/loopj/android-async-http) - Simple asynchronous HTTP requests with JSON parsing
+- [Android YouTube API] (https://developers.google.com/youtube/android/player/) - YouTube Android Player API enables you to incorporate video playback functionality into your Android applications.
+- [Butterknife] (http://jakewharton.github.io/butterknife/) - Annotation library to reduce view boilerplate.
 - [Picasso](http://square.github.io/picasso/) - Image loading and caching library for Android
 
 ## License
