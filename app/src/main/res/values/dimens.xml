@@ -12,5 +12,4 @@
     <dimen name="margin_movie_detail">5dp</dimen>
     <dimen name="play_overlay_size">100dp</dimen>
     <dimen name="youtube_landscape_size">600dp</dimen>
-    <dimen name="poster_screen_width_factor">0.42</dimen>
 </resources>
