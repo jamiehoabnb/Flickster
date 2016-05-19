@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/margin_default"
+    android:layout_margin="@dimen/margin_default"
+    android:background="@color/colorBgDetail"
+    tools:context=".activities.MovieDetailActivity">
+
+    <com.google.android.youtube.player.YouTubePlayerView
+        android:id="@+id/movieDetailPlayer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/tvMovieDetailTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/movieDetailPlayer"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="@dimen/margin_movie_detail"
+        style="@style/TitleFont"/>
+
+    <TextView
+        android:id="@+id/tvMovieDetailReleaseDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvMovieDetailTitle"
+        android:layout_alignParentLeft="true"
+        android:text="@string/release_date"
+        android:layout_marginBottom="@dimen/margin_movie_detail"
+        style="@style/OverviewFont"/>
+
+    <TextView
+        android:id="@+id/tvMovieDetailReleaseDateVal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvMovieDetailTitle"
+        android:layout_toRightOf="@+id/tvMovieDetailReleaseDate"
+        android:layout_marginLeft="@dimen/margin_movie_detail"
+        android:layout_marginBottom="@dimen/margin_movie_detail"
+        style="@style/OverviewFont"/>
+
+    <RatingBar
+        android:id="@+id/rbMovieDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvMovieDetailReleaseDate"
+        android:layout_alignParentLeft="true"
+        android:numStars="5"
+        android:stepSize="1.0" />
+
+    <TextView
+        android:id="@+id/tvMovieDetailOverview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rbMovieDetail"
+        android:layout_alignParentLeft="true"
+        style="@style/OverviewFont"/>
+
+</RelativeLayout>

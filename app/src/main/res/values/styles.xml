@@ -1,0 +1,20 @@
+<resources>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@color/colorBg</item>
+        <item name="android:colorBackground">@color/colorBg</item>
+    </style>
+
+    <style name="TitleFont">
+        <item name="android:typeface">serif</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/colorTextTitle</item>
+        <item name="android:textSize">@dimen/text_size_title</item>
+    </style>
+
+    <style name="OverviewFont">
+        <item name="android:textColor">@color/colorTextOverview</item>
+        <item name="android:textSize">@dimen/text_size_overview</item>
+    </style>
+
+</resources>
