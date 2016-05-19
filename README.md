@@ -30,6 +30,7 @@ The following **optional** features are implemented:
 
 The following **additional** features are implemented:
 
+* [X] Added tabs to show movies that are now playing, most popular or coming soom.  Used info from this tutorial:  http://www.truiton.com/2015/06/android-tabs-example-fragments-viewpager/.
 * [X] Verified working with multiple screen sizes.  Utilized Android Final Resizer, DeviceDemensionsHelper and PercentRelativeLayout.
 * [X] Added custom layout for detail page in landscape mode.
 
