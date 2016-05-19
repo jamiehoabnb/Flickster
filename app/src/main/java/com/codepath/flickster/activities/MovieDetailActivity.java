@@ -6,9 +6,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.codepath.flickster.R;
-import com.codepath.flickster.adapters.Movie;
-import com.codepath.flickster.util.DeviceDimensionsHelper;
-import com.codepath.flickster.util.FlicksterConstants;
+import com.codepath.flickster.models.Movie;
 import com.codepath.flickster.util.YouTubeUtil;
 import com.google.android.youtube.player.YouTubeBaseActivity;
 import com.google.android.youtube.player.YouTubePlayerView;

@@ -1,4 +1,4 @@
-package com.codepath.flickster.adapters;
+package com.codepath.flickster.models;
 
 import org.json.JSONException;
 import org.json.JSONObject;
