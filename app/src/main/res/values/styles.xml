@@ -1,8 +1,9 @@
 <resources>
 
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="android:windowBackground">@color/colorBg</item>
-        <item name="android:colorBackground">@color/colorBg</item>
+        <item name="colorPrimary">@color/colorBg</item>
+        <item name="colorPrimaryDark">@color/colorBg</item>
+        <item name="colorAccent">@color/colorBg</item>
     </style>
 
     <style name="TitleFont">
@@ -15,6 +16,15 @@
     <style name="OverviewFont">
         <item name="android:textColor">@color/colorTextOverview</item>
         <item name="android:textSize">@dimen/text_size_overview</item>
+    </style>
+
+    <style name="ListView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentLeft">true</item>
+        <item name="android:layout_alignParentTop">true</item>
+        <item name="android:layout_marginLeft">@dimen/margin_layout</item>
+        <item name="android:dividerHeight">@dimen/margin_default</item>
     </style>
 
 </resources>

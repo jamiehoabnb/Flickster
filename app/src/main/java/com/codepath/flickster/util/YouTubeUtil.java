@@ -4,7 +4,7 @@ import android.util.Log;
 
 import com.codepath.flickster.activities.MovieActivity;
 import com.codepath.flickster.activities.YouTubeActivity;
-import com.codepath.flickster.adapters.Movie;
+import com.codepath.flickster.models.Movie;
 import com.codepath.flickster.requests.VideosRequest;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;

@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.codepath.flickster.R;
+import com.codepath.flickster.models.Movie;
 import com.codepath.flickster.util.DeviceDimensionsHelper;
 import com.codepath.flickster.util.FlicksterConstants;
 import com.squareup.picasso.Picasso;
