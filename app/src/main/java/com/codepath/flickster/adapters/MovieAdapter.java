@@ -25,7 +25,6 @@ import butterknife.ButterKnife;
 import jp.wasabeef.picasso.transformations.RoundedCornersTransformation;
 
 public class MovieAdapter extends ArrayAdapter<Movie> {
-    private String imageBaseURL;
 
     static class ViewHolder {
         @Nullable @BindView(R.id.tvMovieTitle) TextView tvTitle;
@@ -43,10 +42,8 @@ public class MovieAdapter extends ArrayAdapter<Movie> {
 
     private DetailClickListener detailClickListener;
 
-    public MovieAdapter(Context context, List<Movie> movies, String imageBaseURL,
-                        DetailClickListener detailClickListener) {
+    public MovieAdapter(Context context, List<Movie> movies, DetailClickListener detailClickListener) {
         super(context, 0, movies);
-        this.imageBaseURL = imageBaseURL;
         this.detailClickListener = detailClickListener;
     }
 
@@ -117,11 +114,11 @@ public class MovieAdapter extends ArrayAdapter<Movie> {
     }
 
     private String getPosterImageUri(Movie movie) {
-        return imageBaseURL + FlicksterConstants.POSTER_IMAGE_SIZE + "/" + movie.getPosterImagePath();
+        return FlicksterConstants.getImageBaseURL() + FlicksterConstants.POSTER_IMAGE_SIZE + "/" + movie.getPosterImagePath();
     }
 
     private String getBackDropImageUri(Movie movie) {
-        return imageBaseURL + FlicksterConstants.BACK_DROP_IMAGE_SIZE + "/" + movie.getBackdropImagePath();
+        return FlicksterConstants.getImageBaseURL() + FlicksterConstants.BACK_DROP_IMAGE_SIZE + "/" + movie.getBackdropImagePath();
     }
 
     private View getInflatedLayoutForType(int type, ViewGroup parent) {
