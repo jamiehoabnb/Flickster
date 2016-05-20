@@ -38,11 +38,9 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/MKhCzdt.gif?1' title='Portrait Video Walkthrough' width='' alt='Portrait Video Walkthrough' />
+![Portrait Video Walkthrough](readme_assets/portrait_small.gif )
 
-<img src='http://i.imgur.com/XYDKtjS.gif?1' title='Landscape Video Walkthrough' width='' alt='Landscape Video Walkthrough' />
-
-![Test Image](app/src/main/res/drawable-hdpi/ic_launcher.png)
+![Landscape Video Walkthrough](readme_assets/landscape_small.gif )
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
