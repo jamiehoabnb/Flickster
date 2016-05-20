@@ -103,7 +103,7 @@ public class MovieAdapter extends ArrayAdapter<Movie> {
                         FlicksterConstants.POSTER_SCREEN_WIDTH_FACTOR);
         Picasso.with(getContext())
                 .load(imageUri)
-                .placeholder(R.drawable.ic_movie_placeholder)
+                .placeholder(R.drawable.placeholder)
                 .resize(width, 0)
                 .transform(
                         new RoundedCornersTransformation(FlicksterConstants.ROUNDED_CORNER_CONST,
