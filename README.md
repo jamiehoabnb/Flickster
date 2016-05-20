@@ -42,6 +42,8 @@ Here's a walkthrough of implemented user stories:
 
 <img src='http://i.imgur.com/XYDKtjS.gif?1' title='Landscape Video Walkthrough' width='' alt='Landscape Video Walkthrough' />
 
+![Test Image](app/src/main/res/drawable-hdpi/ic_launcher.png)
+
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
