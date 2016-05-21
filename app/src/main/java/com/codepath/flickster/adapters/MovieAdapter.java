@@ -2,6 +2,7 @@ package com.codepath.flickster.adapters;
 
 
 import android.content.Context;
+import android.content.pm.ActivityInfo;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -97,10 +98,19 @@ public class MovieAdapter extends ArrayAdapter<Movie> {
 
         String imageUri = movie.getType() == Movie.Type.POPULAR ?
                 getBackDropImageUri(movie) : getPosterImageUri(movie);
-        int width = movie.getType() == Movie.Type.POPULAR ?
-                DeviceDimensionsHelper.getDisplayWidth(getContext()) :
-                (int) Math.round(DeviceDimensionsHelper.getDisplayWidth(getContext())*
-                        FlicksterConstants.POSTER_SCREEN_WIDTH_FACTOR);
+
+
+        int width = DeviceDimensionsHelper.getDisplayWidth(getContext());
+
+        if (movie.getType() == Movie.Type.POPULAR) {
+            //Backdrop only has title and overview next to it if in landscape mode.
+            if (viewHolder.tvTitle != null) {
+                width *= FlicksterConstants.BACKDROP_SCREEN_WIDTH_FACTOR;
+            }
+        } else {
+            //Poster always has title and overview next to it.
+            width *= FlicksterConstants.POSTER_SCREEN_WIDTH_FACTOR;
+        }
         Picasso.with(getContext())
                 .load(imageUri)
                 .placeholder(R.drawable.placeholder)
